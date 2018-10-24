@@ -15,14 +15,14 @@ TSS2_SYS_CONTEXT *initSysCtx(TSS2_TCTI_CONTEXT * tctiContext)
 
     TSS2_SYS_CONTEXT *sysContext;
     if ((sysContext = (TSS2_SYS_CONTEXT *) malloc(contextSize)) == NULL) {
-	return NULL;
+        return NULL;
     }
 
     printf("sysContext: %p\n", sysContext);
 
     rc = Tss2_Sys_Initialize(sysContext, contextSize, tctiContext, NULL);
     if (rc != TSS2_RC_SUCCESS) {
-	return NULL;
+        return NULL;
     }
 
     return sysContext;
@@ -37,16 +37,16 @@ TSS2_TCTI_CONTEXT *initTctiCtx()
 
     rc = Tss2_Tcti_Device_Init(NULL, &size, NULL);
     if (rc != TSS2_RC_SUCCESS) {
-	return NULL;
+        return NULL;
     }
 
     if ((tctiContext = malloc(size)) == NULL) {
-	return NULL;
+        return NULL;
     }
 
     rc = Tss2_Tcti_Device_Init(tctiContext, &size, devPath);
     if (rc != TSS2_RC_SUCCESS) {
-	return NULL;
+        return NULL;
     }
 
     return tctiContext;
@@ -58,16 +58,16 @@ int main(int argc, char **argv)
     TSS2_SYS_CONTEXT *sysContext;
 
     if ((tctiContext = initTctiCtx()) == NULL) {
-	printf("Error.");
-	return -1;
+        printf("Error.");
+        return -1;
     }
 
     printf("tctiContext: %p\n", tctiContext);
 
 
     if ((sysContext = initSysCtx(tctiContext)) == NULL) {
-	printf("Error.");
-	return -1;
+        printf("Error.");
+        return -1;
     }
     return 0;
 }
