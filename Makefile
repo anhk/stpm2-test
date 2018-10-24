@@ -7,7 +7,7 @@
 EXEC = test
 
 CFLAGS = -g -O0 -Wall -Werror
-LDFLAGS =
+LDFLAGS = -ltss2-sys -ltss2-tcti-device -L/usr/lib/
 CC = gcc
 
 
